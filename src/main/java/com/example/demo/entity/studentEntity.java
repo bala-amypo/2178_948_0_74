@@ -1,15 +1,51 @@
-package com.example.demo entity;
+package com.example.demo.entity;
 
-import jakarta.persistance.*;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 @Entity
-public class studentEntity{
-    @id
-    @GeneratedValue(startegy=GenerationType.IDENTITY)private Long id;
+public class studentEntity {
 
-    @NotBlank(messages="Name is not valid")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank(message = "Name is not valid")
     private String name;
 
-    @Email(messages="Email format is not valid")
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email format is not valid")
+    private String email;
+
+    public studentEntity() {}
+
+    public studentEntity(Long id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
